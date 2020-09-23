@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.NoteDao">
+<insert id="insertNote" parameterType="com.itheima.po.Note">
+   insert into note(User_id,Title,Message,Picture,create_time)
+   values(#{User_id},#{Title},#{Message},#{Picture},#{create_time})
+ </insert>
+ <select id="selectAllNote2" resultType="com.itheima.po.Note2">
+  select n.Id,u.name as User_name,n.Title,n.Message,n.Picture,n.create_time 
+  from note n,user u
+  where n.user_id=u.id
+ </select> 
+ <select id="selectById" parameterType="Integer" resultType="com.itheima.po.Note2">
+  select n.Id,u.name as User_name,n.Title,n.Message,n.Picture,n.create_time 
+    from note n,user u
+  where n.user_id=u.id
+    and n.id=#{id}
+ </select>
+ <select id="selectMyNote" parameterType="Integer" resultType="com.itheima.po.Note2">
+  select n.Id,u.name as User_name,n.Title,n.Message,n.Picture,n.create_time 
+  from note n,user u
+  where n.user_id=u.id
+   and u.id=#{id}
+ </select>
+ <delete id="delete" parameterType="Integer">
+  delete from note
+  where id=#{id}
+ </delete>
+ <update id="updateNote" parameterType="com.itheima.po.Note">
+  update note set
+  Title=#{Title},Message=#{Message}
+  where Id=#{Id}
+ </update>
+</mapper>

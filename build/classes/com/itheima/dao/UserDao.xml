@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.dao.UserDao">
+ <insert id="insertUser" parameterType="com.itheima.po.User" keyProperty="Id" useGeneratedKeys="true">
+   insert into user(name,password,classname)
+   values(#{name},#{password},#{classname})
+ </insert>
+ <select id="isLogin" parameterType="com.itheima.po.User" resultType="com.itheima.po.User">
+   select * from user where Id=#{Id} and Password=#{Password}
+ </select>
+</mapper>
